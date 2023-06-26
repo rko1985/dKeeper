@@ -4,6 +4,7 @@ import Heading from './Heading';
 import Note from './Note';
 import Footer from './Footer';
 import CreateArea from "./CreateArea";
+import { dkeeper } from "../../../declarations/dkeeper";
 
 function App() {
 
@@ -11,10 +12,11 @@ function App() {
 
     function addNote(newNote){
         setNotes(prevNotes => {
+            dkeeper.createNote(newNote.title, newNote.content);
             return[
                 ...prevNotes,
                 newNote
-            ]
+            ];
         });
     }
 
@@ -22,8 +24,8 @@ function App() {
         setNotes(prevNotes => {
             return prevNotes.filter((noteItem, index) => {
                 return index !== id;
-            })
-        })
+            });
+        });
     }
 
     return(
